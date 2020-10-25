@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+
+  client:
+    build:
+      context: ./client
+      dockerfile: $PWD/client/Dockerfile
+    container_name: shorty-client
+    depends_on:
+      - app
+    ports:
+      - 8080:8080
+
+  app:
+    build:
+      context: ./server
+      dockerfile: $PWD/server/Dockerfile
+    container_name: shorty-server
+    depends_on:
+      - mongo
+    restart: always
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://mongo:27017/shorty
+    ports:
+      - '3000:3000'
+    links:
+      - mongo
