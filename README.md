@@ -15,8 +15,9 @@ A URL shortening Fullstack Vue App.
 ## For Local
 
 ```
-npm install
-npm run dev
+cd client && npm install
+cd server && npm install
+npm run dev  // for both i.e. client & server
 ```
 
 # Functionality
