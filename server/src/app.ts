@@ -28,7 +28,7 @@ class App {
 
   private initializeMiddlewares(): void {
     this.app.use(bodyParser.json());
-    this.app.use(cors())
+    this.app.use(cors());
   }
 
   private mongoSetup(): void {
