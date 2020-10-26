@@ -4,10 +4,11 @@
   "description": "A demo app",
   "main": "./dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && babel src --out-dir dist --extensions .ts",
     "dev": "ts-node ./src/server.ts",
     "start": "node ./dist/server.js",
-    "prod": "npm run build && npm run start"
+    "prod": "npm run build && npm run start",
+    "test": "jest --testEnvironment=node --runInBand --detectOpenHandles"
   },
   "keywords": [
     "demo",
@@ -28,8 +29,42 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
     "@types/express": "^4.17.7",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.2",
+    "jest": "^26.6.1",
     "nodemon": "^2.0.4",
+    "supertest": "^5.0.0",
+    "ts-jest": "^26.4.2",
     "typescript": "^4.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(t|j)s?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.(test|spec).ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/mocks.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/mocks.js"
+    }
   }
 }
