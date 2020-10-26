@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose';
-import * as shortId from 'shortid';
+import mongoose from 'mongoose';
+import shortId from 'shortid';
 import { tryy } from '../../utils';
 import { ErrorHandler } from '../../utils';
 import { IResponse, IURL } from '../../interfaces';
@@ -50,8 +50,6 @@ URLSchema.statics.findOrCreate = async function (urlObj: IURL) {
 
     const [error, urlDoc] = await tryy(doc.save());
 
-    // urlDoc.render = ``;
-
     let response: IResponse = {
       message: 'URL shortened successfully',
       created: Boolean(urlDoc),
@@ -83,4 +81,4 @@ URLSchema.pre('save', async function (next) {
   next();
 });
 
-export default mongoose.model('URL', URLSchema);
+export default mongoose.model<IURL>('URL', URLSchema);

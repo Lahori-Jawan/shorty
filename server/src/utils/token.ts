@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { Request } from 'express';
 import { ITokenCreate } from '../interfaces';
 import { ErrorHandler } from '../utils';
