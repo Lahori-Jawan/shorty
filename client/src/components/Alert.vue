@@ -31,7 +31,7 @@ export default {
       default: 'SUCCESS',
     },
     forceRerender: {
-      type: Boolean,
+      type: [Boolean, Number],
       default: false,
     },
   },
