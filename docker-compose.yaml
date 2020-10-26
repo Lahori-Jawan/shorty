@@ -17,7 +17,7 @@ services:
     ports:
       - 8080:8080
 
-  app:
+  server:
     build:
       context: ./server
       dockerfile: $PWD/server/Dockerfile
