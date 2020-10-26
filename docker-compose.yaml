@@ -13,7 +13,7 @@ services:
       dockerfile: $PWD/client/Dockerfile
     container_name: shorty-client
     depends_on:
-      - app
+      - server
     ports:
       - 8080:8080
 
