@@ -11,6 +11,7 @@ const unhandledPromiseRejectionHandler = (
 
 const uncaughtExceptionHandler = async (err: any) => {
   // logger.error(err);
+  console.log('uncaughtExceptionHandler', err);
   process.exitCode = 1;
 };
 

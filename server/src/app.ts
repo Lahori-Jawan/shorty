@@ -8,6 +8,7 @@ import ProtectedRoutes from './routes';
 import {
   finalErrorHandler,
   unhandledPromiseRejectionHandler,
+  uncaughtExceptionHandler,
   authMiddleware as AuthMiddleware,
 } from './middlewares';
 
@@ -47,6 +48,7 @@ class App {
 
   private setupProcessEventHandlers(): void {
     process.on('unhandledRejection', unhandledPromiseRejectionHandler);
+    process.on('uncaughtException', uncaughtExceptionHandler);
   }
 
   private initializeErrorHandlers(): void {
