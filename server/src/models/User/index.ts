@@ -1,5 +1,5 @@
-import * as bcrypt from 'bcrypt';
-import * as mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
 import { tryy, createToken } from '../../utils';
 import IResponse from '../../interfaces/response';
 import { ErrorHandler } from '../../utils';
@@ -185,6 +185,7 @@ UserSchema.methods.purchase = async function (domains: string[]) {
 };
 
 UserSchema.methods.setActiveDomain = async function (domainId: string) {
+  let domain = { active: false };
   let response: IResponse = {
     message: ``,
     created: true,
@@ -192,20 +193,21 @@ UserSchema.methods.setActiveDomain = async function (domainId: string) {
     record: null,
   };
 
-  if (!this.purchased.length) {
+  this.purchased.forEach((customDomain: any) => {
+    if (customDomain.id === domainId) {
+      customDomain.active = true;
+      domain = customDomain;
+    } else {
+      customDomain.active = false;
+    }
+  });
+
+  if (!domain.active) {
     response.message = `Couldn't activate domain`;
     response.status = 400;
     response.created = false;
     return response;
   }
-
-  this.purchased.forEach((customDomain: any) => {
-    if (customDomain.id === domainId) {
-      customDomain.active = true;
-    } else {
-      customDomain.active = false;
-    }
-  });
 
   const [error, doc] = await tryy(this.save());
 

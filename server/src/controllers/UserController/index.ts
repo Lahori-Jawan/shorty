@@ -28,6 +28,8 @@ export default class UserController {
 
     if (status >= 400) return next(new ErrorHandler(message, status));
 
+    delete record._doc.password;
+
     res.status(status).json({
       message,
       user: record,

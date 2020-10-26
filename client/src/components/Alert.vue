@@ -55,7 +55,7 @@ export default {
 .right-position {
   position: fixed;
   top: 3rem;
-  z-index: 9;
+  z-index: 99999;
   right: -100rem;
   transition: all 0.75s;
   height: 6rem;
