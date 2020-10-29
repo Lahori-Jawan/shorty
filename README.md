@@ -1,7 +1,13 @@
-# shorty
+# Shorty
 
 A URL shortening Fullstack Vue App.
 
+# Credentials
+For online [App](https://shorty-url.netlify.app/#), use the following credentials
+```
+email: admin@admin.com
+password: admin
+```
 # Development
 
 ## clone
